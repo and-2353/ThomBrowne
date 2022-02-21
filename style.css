@@ -39,13 +39,31 @@ body {
     font-weight: 400;
 }
 
-.div-flex {
+.div-top{
+    display: flex;
+    height: 180px;
+    position: relative;
+    background-color: pink;
+}
+
+.div-top .top-item {
+    width: 60%;
+    height: 30%;
+    text-align: center;
+    padding: 1% 2%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.div-mid {
     display: flex;
     height: 400px;
     background-color: aquamarine;
 }
 
-.div-flex .flex-item {
+.div-mid .mid-item {
     width: 10%;
     height: 100%;
     padding: 1% 2%;
@@ -54,7 +72,6 @@ body {
 
 #a {
     background-color: red;
-    height: 150px;
 }
 #b {
     background-color: blue;
@@ -81,8 +98,51 @@ body {
     width: 10%;
 }
 #h {
+    background-color: red;
+}
+#i {
+    background-color: blue;
+}
+#h {
+    background-color: lightsalmon;
+}
+
+.div-bottom{
+    display: flex;
+    height: 250px;
+    position: relative;
     background-color: pink;
-    height: 200px;
+}
+
+.div-bottom .bottom-left-item {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    background-color: blueviolet;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+.div-bottom .bottom-item {
+    width: 40%;
+    height: 50%;
+    text-align: center;
+    padding: 1% 2%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.div-bottom .bottom-right-item {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    background-color: blueviolet;
+    position: absolute;
+    top: 0%;
+    right: 0%;
 }
 
 
