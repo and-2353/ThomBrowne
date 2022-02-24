@@ -35,8 +35,9 @@ header .headline{
 
 /* サイト全体のフォント指定 */
 body {
-    font-family: "Noto Sans JP", sans-serif;
-    font-weight: 400;
+    font-family: "Garamond", "Shippori Mincho", "Noto Sans JP", sans-serif;
+    font-weight: 800 400;
+    background-image : url(./cutdata/tatami.jpg);
 }
 
 .div-top{
@@ -52,15 +53,23 @@ body {
     text-align: center;
     padding: 1% 2%;
     position: absolute;
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center; /* 文字左右中央寄せ */
+    justify-content: center; /* 文字上下中央寄せ */
+}
+
+.div-top .title{
+    font-size: 400%; 
+    text-align: center;    
 }
 
 .div-mid {
     display: flex;
-    height: 400px;
-    background-color: aquamarine;
+    height: auto;
+    background-color: pink;
 }
 
 .div-mid .mid-item {
@@ -68,61 +77,73 @@ body {
     height: 100%;
     padding: 1% 2%;
     box-sizing: border-box; /* padding, border をwidth, height の計算に考慮しないようにする */
+    text-align: center; /* 画像中央寄せ */
+}
+
+.div-mid .mid-item img {
+    width: 80%;;
+    
 }
 
 #a {
-    background-color: red;
+    background-color: white;
+    font-weight:bold;
+    border: solid 5px black;
 }
 #b {
-    background-color: blue;
+    background-color: pink;
     width: 10%;
 }
 #c {
-    background-color: green;
+    background-color: pink;
     width: 20%;
 }
 #d {
-    background-color: yellow;
+    background-color: pink;
     width: 20%;
 }
 #e {
-    background-color: lightblue;
+    background-color: pink;
     width: 20%;
 }
 #f {
-    background-color: purple;
+    background-color: pink;
     width: 20%;
 }
 #g {
-    background-color: lightslategray;
+    background-color: pink;
     width: 10%;
 }
 #h {
-    background-color: red;
+    text-align: right;
 }
 #i {
-    background-color: blue;
+    background-color: pink;
 }
-#h {
-    background-color: lightsalmon;
+#j {
+    
+    text-align: left;
 }
 
 .div-bottom{
     display: flex;
-    height: 250px;
+    height: 300px;
     position: relative;
     background-color: pink;
 }
 
 .div-bottom .bottom-left-item {
     width: 25%;
-    height: 100%;
-    text-align: center;
-    background-color: blueviolet;
+    height: auto;
+    
     position: absolute;
-    top: 0%;
-    left: 0%;
 }
+
+.div-bottom .bottom-left-item img,
+.div-bottom .bottom-right-item img {
+    height: 300px;
+}
+
 
 .div-bottom .bottom-item {
     width: 40%;
@@ -137,14 +158,33 @@ body {
 
 .div-bottom .bottom-right-item {
     width: 25%;
-    height: 100%;
-    text-align: center;
-    background-color: blueviolet;
+    height: 300px;
     position: absolute;
     top: 0%;
     right: 0%;
 }
 
+table {
+    width: 100%;
+    height: 40%;
+    border-collapse: collapse;
+    border: solid 5px black;
+    background-color: white;
+}
+table th, table td {
+    border: solid 2px black;
+}
+
+table td {
+    width: 20px;
+    height: 40px;
+    padding: 10px 10px;
+}
+
+.result-table img {
+    width: 100%;
+    height: 100%;
+}
 
 footer{
     width: 100%;
