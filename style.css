@@ -37,7 +37,7 @@ header .headline{
 body {
     font-family: "Garamond", "Shippori Mincho", "Noto Sans JP", sans-serif;
     font-weight: 800 400;
-    background-image : url(./cutdata/tatami.jpg);
+    background-image : url(./materials/processed/background/tatami.jpg);
 }
 
 .div-top{
@@ -69,7 +69,7 @@ body {
 .div-mid {
     display: flex;
     height: auto;
-    
+    margin-top: 30px;
 }
 
 .div-mid .mid-item {
@@ -80,9 +80,12 @@ body {
     text-align: center; /* 画像中央寄せ */
 }
 
-.div-mid .mid-item img {
-    width: 80%;;
-    
+.div-mid .mid-item input {
+    width: 80%;
+}
+
+.div-mid .mid-item input:hover {
+    opacity:0.7; filter:alpha(opacity=70);
 }
 
 #a {
@@ -92,22 +95,22 @@ body {
 }
 #b {
     
-    width: 10%;
+    width: 15%;
 }
 #c {
-    width: 20%;
+    width: 17.5%;
 }
 #d {
-    width: 20%;
+    width: 17.5%;
 }
 #e {
-    width: 20%;
+    width: 17.5%;
 }
 #f {
-    width: 20%;
+    width: 17.4%;
 }
 #g {
-    width: 10%;
+    width: 15%;
 }
 #h {
     text-align: right;
@@ -122,6 +125,7 @@ body {
     display: flex;
     height: 300px;
     position: relative;
+    margin-top: 20px;
 }
 
 .div-bottom .bottom-left-item {
@@ -180,14 +184,14 @@ table td {
 
 footer{
     width: 100%;
-    height: 50px;
+    height: 35px;
     background-color: darkgreen;
     color: white;
-    padding-top: 1em;
+    padding-top: 15px;
     text-align: center;
-    font-family: "Garamond", "Noto Sans JP", sans-serif;
-    font-size: 20px;
-    font-weight: 100;
+    font-family: "Roboto Condensed", "Garamond", "Noto Sans JP", sans-serif;
+    font-size: 17px;
+    font-weight: 300;
 }
 
 ul.footer-menu li {

@@ -3,11 +3,12 @@
     <head>
         <meta charset="utf-8">
         <title>What-Michio-is-likely-to-say.com</title>
+        <link rel="icon" href="./materials/processed/icon/tori_karaage.gif">
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Shippori+Antique&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&family=Concert+One&family=Shippori+Antique&display=swap" rel="stylesheet">
     </head>
 
 
@@ -34,7 +35,7 @@
         <!----- main ----->
         <div class="div-top">
             <div id="a" class="top-item">
-                <h1 class="title">
+                <h1 class="title" id="title">
                     ケンタッキーは…
                 </h1>
             </div>
@@ -42,28 +43,29 @@
         
         <div class="div-mid">
             <div id="b" class="mid-item"></div>
-            <div id="c" class="mid-item"><img src="./cutdata/画像1.png"></div>
-            <div id="d" class="mid-item"><img src="./cutdata/画像2.png"></div>
-            <div id="e" class="mid-item"><img src="./cutdata/画像3.png"></div>
-            <div id="f" class="mid-item"><img src="./cutdata/画像4.png"></div>
+            <div id="c" class="mid-item"><input id="im-p-0" type="image" src="./materials/processed/karuta/im0.png" alt="カルタ" onclick="Judge(this);"></div>
+            <div id="d" class="mid-item"><input id="im-p-1" type="image" src="./materials/processed/karuta/im1.png" alt="カルタ" onclick="Judge(this);"></div>
+            <div id="e" class="mid-item"><input id="im-p-2" type="image" src="./materials/processed/karuta/im2.png" alt="カルタ" onclick="Judge(this);"></div>
+            <div id="f" class="mid-item"><input id="im-p-3" type="image" src="./materials/processed/karuta/im3.png" alt="カルタ" onclick="Judge(this);"></div>
             <div id="g" class="mid-item"></div>   
         </div>
 
         <div class="div-bottom">
             <span class="temp">
-                <div id="h" class="bottom-left-item"><img src="./cutdata/nunokawa_2.png"></div>
+                <div id="h" class="bottom-left-item"><img src="./materials/processed/background/nunokawa.png"></div>
                 <div id="i" class="bottom-item">
                     <table class="result-table">
                         <tr>
-                            <td><img src="./cutdata/yatta.png"></td>
-                            <td><img src="./cutdata/dame.png"></td>
-                            <td><img src="./cutdata/yatta.png"></td>
-                            <td><img src="./cutdata/dame.png"></td>
-                            <td><img src="./cutdata/dame.png"></td>
+                            <td id="result-0"></td>
+                            <td id="result-1"></td>
+                            <td id="result-2"></td>
+                            <td id="result-3"></td>
+                            <td id="result-4"></td>
                         </tr>
                     </table>
+                    <button id="next" onclick="changeIMG()">NEXT</button>
                 </div>
-                <div id="j" class="bottom-right-item"><img src="./cutdata/mitio_2.png"></div>
+                <div id="j" class="bottom-right-item"><img src="./materials/processed/background/mitio.png"></div>
             </span>       
         </div>
         <!----- /main ----->
