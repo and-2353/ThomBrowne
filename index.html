@@ -20,14 +20,8 @@
             </h1>
             <ul class="nav-list">
                 <li class="nav-list-item">
-                    <button onclick="location.href='./index.html'">タイトルへ</button>
-                </li>
-                <li class="nav-list-item">
                     <button id="modal-open-r">ルール</button>
-                </li>
-                <li class="nav-list-item">
-                    <button id="modal-open-s">設定</button>     
-                </li>       
+                </li>    
             </ul>    
         </header>
         <!----- /header ----->
@@ -63,7 +57,11 @@
                             <td id="result-4"></td>
                         </tr>
                     </table>
-                    <button id="next" onclick="changeIMG()">NEXT</button>
+                    <div id="next-or-result">
+                        <button id="next" onclick="changeIMG()">NEXT</button>
+                    </div>
+                    
+                    <!--<button id="next" onclick="changeIMG()">NEXT</button>-->
                 </div>
                 <div id="j" class="bottom-right-item"><img src="./materials/processed/background/mitio.png"></div>
             </span>       
