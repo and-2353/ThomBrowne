@@ -18,7 +18,7 @@ var display_text_id = "te0"; //表示されてる text(問題文) のid
 var map = {
     "te0":"im0", "te1":"im1", "te2":"im2", "te3":"im3",
     "te4":"im4", "te5":"im5", "te6":"im6", "te7":"im7",
-    "te8":"im8", "te9":"im9", "te10":"im3", "te11":"im11",
+    "te8":"im8", "te9":"im9", "te10":"im10", "te11":"im11",
     "te12":"im3", "te13":"im5", "te14":"im12", "te15":"im13",
     "te16":"im14", "te17":"im15", "te18":"im7", "te19":"im16",
     "te20":"im17", "te21":"im18", "te22":"im19", "te23":"im20",
@@ -27,11 +27,16 @@ var map = {
 var q_num = 0; // 何問目か
 var q_is_fnshed = false; // 問題終了フラグ
 var hiddenelement = ""; // hidden にしている input タグ
-
+var start_time;
+var collapsed_time;
+var miss_num = 0; 
 
 
 // 画像切り替え関数
 function changeIMG(){
+    if (q_num==0){
+        start_time = Date.now();
+    }
 
     // nextボタンを隠す, hidden にしている input タグを再表示する
     document.getElementById('next').style.visibility = 'hidden';
@@ -69,12 +74,21 @@ function changeIMG(){
         if (i == slcted_div){
             var id_im = "im-p-" + String(i);
             var dec = map[display_text_id].match(/\d+/);
+            document.getElementById(id_im).src = paths[dec];
 
             // 重複削除
             var index = arrs.indexOf(dec);
             arrs.splice(index, 1)
+            if (dec == 4){
+                var i_ = arrs.indexOf(10);
+                arrs.splice(i_, 1)
+            }
+            if (dec == 10){
+                var i__ = arrs.indexOf(4);
+                arrs.splice(i__, 1)
+            }
 
-            document.getElementById(id_im).src = paths[dec];  
+              
         }
         else{
             var j = arrs[i];
@@ -87,6 +101,10 @@ function changeIMG(){
 function Judge(element){
     if (q_is_fnshed){
         return;
+    }
+    if (q_num==4){
+        collapsed_time = Date.now() - start_time;
+        //alert(collapsed_time);
     }
     
     var attr = element.getAttribute("src"); // input要素のsrc属性の値を取得
@@ -103,15 +121,34 @@ function Judge(element){
         document.getElementById(id_result).innerHTML = '<img src="./materials/processed/evaluation/yatta.png">';
     }else{
         document.getElementById(id_result).innerHTML = '<img src="./materials/processed/evaluation/dame.png">';
+        miss_num++;
     }
 
     q_is_fnshed = true; // 問題終了フラグの切り替え
     document.getElementById('next').style.visibility = 'visible'; //nextボタン表示
     if (q_num >= 4){
-        document.getElementById('next-or-result').innerHTML = '<button id="result" onclick="result()">RESULT</button>';
+        document.getElementById('next-or-result').innerHTML = '<button id="result" onclick="DisplayResult()">RESULT</button>';
         //document.getElementById('next').style.visibility = 'visible'; //nextボタン表示
         
     }
 }
 
-     
+function DisplayResult(){
+    document.getElementById('modal-content-result').style.visibility = 'visible'; //結果ダイアログ表示
+    document.getElementById('title').innerHTML = "リザルト"; // タイトル変更
+    var result_time = collapsed_time/1000;
+    
+
+    document.getElementById('clear-time').innerHTML = "クリアタイム: " + result_time +"秒";
+    document.getElementById('penalty').innerHTML = "ペナルティ: ×" + miss_num;
+
+    var final_score = (Math.log((result_time/20) + (miss_num/4))) / (Math.log(0.5)) * 100;
+    // final_score_ = (-5) *(result_time + (miss_num * 10)) + 100;
+    document.getElementById('final-score').innerHTML = "最終スコア：" + final_score.toFixed(2);
+    document.getElementById('next-or-result').innerHTML = '<button id="result" onclick="reload()">はじめから</button>';
+    
+}
+
+function reload(){
+    location.reload();
+}
