@@ -141,10 +141,28 @@ function DisplayResult(){
 
     document.getElementById('clear-time').innerHTML = "クリアタイム: " + result_time +"秒";
     document.getElementById('penalty').innerHTML = "ペナルティ: ×" + miss_num;
-
+    
+    
     var final_score = (Math.log((result_time/20) + (miss_num/4))) / (Math.log(0.5)) * 100;
     // final_score_ = (-5) *(result_time + (miss_num * 10)) + 100;
     document.getElementById('final-score').innerHTML = "最終スコア：" + final_score.toFixed(2);
+    
+    var shareUrl  = 'https://twitter.com/intent/tweet';
+    shareUrl += '?text='+encodeURIComponent('Score:' + final_score.toFixed(2) +'\nplayed mitio-iisou.com #mitioiisou\n');
+    shareUrl += '&url='+encodeURIComponent('https://and-2353.github.io/ThomBrowne/');
+ 
+    // シェアボタン追加
+    ;
+    var shareLink = '<a href="' + shareUrl + '">twitter</a>';
+    document.getElementById('share').innerHTML = '<h1>シェア：' + shareLink +'</h1>';
+    document.getElementById('next-or-result').innerHTML = '<button id="result" onclick="reload()">はじめから</button>';
+    
+}
+
+function DisplayRule(){
+    document.getElementById('modal-content-rule').style.visibility = 'visible'; //結果ダイアログ表示
+    document.getElementById('title').innerHTML = "ルール"; // タイトル変更
+    
     document.getElementById('next-or-result').innerHTML = '<button id="result" onclick="reload()">はじめから</button>';
     
 }

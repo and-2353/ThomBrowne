@@ -89,6 +89,23 @@ body {
     visibility: hidden;
 }
 
+
+.div-mid #modal-content-rule{
+    z-index: 2;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 50%;
+    background-color: white;
+    border: solid 5px black;
+    color: black;
+    text-align: center;
+    padding: 2.5% 5%;
+    visibility: hidden;
+}
+
 .div-mid .mid-item {
     width: 10%;
     height: 100%;
@@ -219,7 +236,7 @@ button {
 
     /* 整える */
     margin: auto; /* 前後の隙間 */
-    padding: 0.6em 2em; /* 塗りの余白 */
+    
     font-size: 1.3em; /* フォントサイズ */
     font-family: "Shippori Mincho", "Noto Sans JP", sans-serif;
     font-weight: 800 400;
@@ -229,6 +246,17 @@ button {
     border-radius: 3px; /* 角の丸み */
     border: 0; /* 枠線を消す */
     transition: 0.3s; /* ホバーの変化を滑らかに */
+}
+#restart  {
+    padding: 0.6em 1.1em;
+}
+
+#modal-open-rule {
+    padding: 0.6em 2em;
+}
+#next,
+#result {
+    padding: 0.6em 2em;   
 }
   
 /* ボタンのホバー時の設定 */
