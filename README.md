@@ -14,5 +14,5 @@ Play：https://and-2353.github.io/ThomBrowne/
 
 ###スコアの算出
 $$
-w_3\log\frac{1}{2} (w_1t+w_2m)  \\ t=time(next(Q1)～button(Q5)) \\ m= number \, of \,mistake \\ w_1=\frac{1}{20} \\ w_2= \frac{1}{4} \\w_3 =100$
+w_3\log\frac{1}{2} (w_1t+w_2m)  \\ t=time(next(Q1)～button(Q5)) \\ m= number \, of \,mistake \\ w_1=\frac{1}{20} \\ w_2= \frac{1}{4} \\w_3 =100
 $$
