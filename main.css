@@ -11,7 +11,7 @@
 body {
     font-family: "Garamond", "Shippori Mincho", "Noto Sans JP", sans-serif;
     font-weight: 800 400;
-    background-image: url(./materials/processed/background/tatami.jpg);
+    background-image: url(./materials/processed/background/tatami1.png);
     background-size: cover;
     overflow-x: hidden;
 }
@@ -95,6 +95,9 @@ body {
     width: 90%;
     border: 2px solid black;
 }
+
+
+
 
 /* メディアクエリでPCとスマートフォン対応 */
 @media (min-width: 461px) {

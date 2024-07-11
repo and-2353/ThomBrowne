@@ -1,6 +1,6 @@
 /* ヘッダーの設定 */
 header {
-    height: 60px;
+    height: auto;
     width: 100%;
     padding: 15px 0;
     background-color: darkgreen;
@@ -72,3 +72,4 @@ header .headline {
         display: flex;
     }
 }
+

@@ -51,7 +51,6 @@ var start_time;
 var collapsed_time;
 var miss_num = 0; 
 
-
 // 画像切り替え関数
 function changeIMG(){
     if (q_num==0){
@@ -181,3 +180,25 @@ function DisplayRule(){
 function reload(){
     location.reload();
 }
+
+// 画像切り替えの追加コード
+
+const images_nunokawa = [
+    "./materials/processed/background/nunokawa1.png",
+    "./materials/processed/background/nunokawa2.png",
+];
+
+const images_mitio = [
+    "./materials/processed/background/mitio1.png",
+    "./materials/processed/background/mitio2.png",
+];
+
+let currentIndex = 0;
+
+function changeBackgroundImage() {
+    currentIndex = (currentIndex + 1) % images_nunokawa.length;
+    document.getElementById('image_nunokawa').src = images_nunokawa[currentIndex];
+    document.getElementById('image_mitio').src = images_mitio[currentIndex];
+}
+
+setInterval(changeBackgroundImage, 1000);

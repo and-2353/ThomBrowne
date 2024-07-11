@@ -11,10 +11,6 @@
     <script src="script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&family=Concert+One&family=Shippori+Antique&display=swap" rel="stylesheet">
@@ -22,7 +18,7 @@
 
 <body>
     <!-- header -->
-    <header>
+    <header class="zigzag">
         <h1 class="headline">
             <a>トムブラウンつかみカルタ</a>
         </h1>
@@ -76,11 +72,12 @@
                 <div id="f" class="mid-item"><input id="im-p-3" type="image" src="./materials/processed/karuta/im3.png" alt="カルタ" onclick="Judge(this);"></div>
             </div>
         </div>
+        
     </div>
 
     <div class="div-bottom">
         <span class="bottom-row">
-            <div id="h" class="bottom-left-item"><img src="./materials/processed/background/nunokawa.png"></div>
+            <div id="h" class="bottom-left-item"><img id="image_nunokawa" src="./materials/processed/background/nunokawa1.png"></div>
             <div id="i" class="bottom-item">
                 <table class="result-table">
                     <tr>
@@ -95,7 +92,7 @@
                     <button id="next" onclick="changeIMG()">NEXT</button>
                 </div>
             </div>
-            <div id="j" class="bottom-right-item"><img src="./materials/processed/background/mitio.png"></div>
+            <div id="j" class="bottom-right-item"><img id="image_mitio" src="./materials/processed/background/mitio.png"></div>
         </span>
     </div>
     
@@ -105,7 +102,7 @@
     <div class="modal-overlay" id="modal-overlay"></div>
 
     <!-- footer -->
-    <footer>
+    <footer class="zigzag">
         <p>©2022 @and-2353. All rights reserved.</p>
     </footer>
     <!----- /footer ----->
