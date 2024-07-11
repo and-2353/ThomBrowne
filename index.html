@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>トムブラウンつかみカルタ</title>
+    <title>トム・ブラウンかるた</title>
     <link rel="icon" href="./materials/processed/icon/tori_karaage.gif">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="main.css">
@@ -20,14 +20,14 @@
     <!-- header -->
     <header class="zigzag">
         <h1 class="headline">
-            <a>トムブラウンつかみカルタ</a>
+            <a>トム・ブラウンかるた</a>
         </h1>
         <ul class="nav-list">
             <li class="nav-list-item">
-                <button id="modal-open-rule" onclick="DisplayRule()">ルール</button>
+                <a href="javascript:void(0)" class="btn btn-malformation" id="modal-open-rule" onclick="DisplayRule()">ルール</a>
             </li>
             <li class="nav-list-item">
-                <button id="restart" onclick="reload()">はじめから</button>
+                <a href="javascript:void(0)" class="btn btn-malformation" id="restart" onclick="reload()">はじめから</a>
             </li>
         </ul>
         <button class="hamburger-menu" onclick="toggleMenu()">
@@ -52,14 +52,14 @@
             <hr size="3" color="000000">
             <h1 id="final-score"></h1>
             <div id="share"></div>
-            <button onclick="closeModal('modal-content-result')">戻る</button>
-            <button id="restart" onclick="reload()">はじめから</button>
+            <a href="javascript:void(0)" class="btn btn-malformation" id="close-result" onclick="closeModal('modal-content-result')">もどる</a>
+            <a href="javascript:void(0)" class="btn btn-malformation" id="restart-result" onclick="reload()">はじめから</a>
         </div>
         <div class="modal-content" id="modal-content-rule" style="display: none;">
             <h1>正しく繋がるものを選びましょう</h1>
             <h1>ミスが少なく解答が早いほど高いスコアが出ます</h1>
-            <button onclick="closeModal('modal-content-rule')">戻る</button>
-            <button id="restart" onclick="reload()">はじめから</button>
+            <a href="javascript:void(0)" class="btn btn-malformation" id="close-rule" onclick="closeModal('modal-content-rule')">もどる</a>
+            <a href="javascript:void(0)" class="btn btn-malformation" id="restart-rule" onclick="reload()">はじめから</a>
         </div>
 
         <div class="div-mid">
@@ -89,7 +89,7 @@
                     </tr>
                 </table>
                 <div id="next-or-result">
-                    <button id="next" onclick="changeIMG()">NEXT</button>
+                    <a href="javascript:void(0)" class="btn btn-malformation" id="next" onclick="changeIMG()">NEXT</a>
                 </div>
             </div>
             <div id="j" class="bottom-right-item"><img id="image_mitio" src="./materials/processed/background/mitio.png"></div>
