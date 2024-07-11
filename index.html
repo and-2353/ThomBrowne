@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="footer.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
     <div class="div-top">
         <div id="a" class="top-item">
             <h1 class="title" id="title">
-                ケンタッキーは…
+                <span id="animated-text">ケンタッキーは…</span>
             </h1>
         </div>
     </div>
@@ -89,10 +89,10 @@
                     </tr>
                 </table>
                 <div id="next-or-result">
-                    <a href="javascript:void(0)" class="btn btn-malformation" id="next" onclick="changeIMG()">NEXT</a>
+                    <a href="javascript:void(0)" class="btn btn-malformation" id="next" onclick="changeIMG()" style="visibility: hidden;">NEXT</a>
                 </div>
             </div>
-            <div id="j" class="bottom-right-item"><img id="image_mitio" src="./materials/processed/background/mitio.png"></div>
+            <div id="j" class="bottom-right-item"><img id="image_mitio" src="./materials/processed/background/mitio1.png"></div>
         </span>
     </div>
     
@@ -103,7 +103,7 @@
 
     <!-- footer -->
     <footer class="zigzag">
-        <p>©2022 @and-2353. All rights reserved.</p>
+        <p>©2024 @and-2353. All rights reserved.</p>
     </footer>
     <!----- /footer ----->
 </body>
