@@ -1,0 +1,36 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+
+# Logs
+logs
+*.log
+*.log.*
+
+# Coverage directory
+coverage
+.nyc_output
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn
+.yarn-integrity
+.yarn/*
+.pnp.*
+
+# Local development environment settings
+.vscode/

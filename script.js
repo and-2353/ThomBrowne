@@ -1,4 +1,4 @@
-// 既存のコード
+const debug = require('debug')('app');
 
 // モーダルを開く関数
 function openModal(modalId) {
@@ -18,32 +18,26 @@ function toggleMenu() {
     navList.classList.toggle('active');
 }
 
-// 画像パスの配列を作成
-const paths = []; 
-for (let i = 0; i < 22; i++) { // i < [画像数]
-    paths.push("./materials/processed/karuta/im" + i + ".png");
+// TSVファイルを読み込む関数
+function loadTSV(path, callback) {
+    fetch(path)
+        .then(response => response.text())
+        .then(data => {
+            const parsedData = data.split('\n').map(row => row.split('\t'));
+            callback(parsedData);
+        });
 }
 
-const texts = [
-    "ケンタッキーは…", "はまぐりは…", "スマートフォンは…" , "夢屋まさるは…", 
-    "誰か一緒に…", "ミドリムシは…", "お尻で温めて…", "そうめんは…",
-    "醤油に醤油をかけて…","豚骨スープで…", "誰か一緒に…", "偉い人を…",
-    "かまいたちの濱家を…", "春雨は…", "ジャックライアンのDVDを…", "皆さんと私は…",
-    "生卵は…", "また僕と皆さんで…", "どん兵衛は…", "皆さん…",
-    "マイメロディに…", "広瀬すずちゃんと…", "お尻で…", "頑張っている人を…",
-    "牛肉を…"
-];
+let texts = [];
+let map = {};
+loadTSV('./data/texts.tsv', parsedData => {
+    texts = parsedData.map(row => row[0]);
+    map = parsedData.reduce((acc, row, index) => {
+        acc[`te${index}`] = `im${row[1]}`;
+        return acc;
+    }, {});
+});
 let display_text_id = "te0"; //表示されてる text(問題文) のid
-
-const map = {
-    "te0":"im0", "te1":"im1", "te2":"im2", "te3":"im3",
-    "te4":"im4", "te5":"im5", "te6":"im6", "te7":"im7",
-    "te8":"im8", "te9":"im9", "te10":"im10", "te11":"im11",
-    "te12":"im3", "te13":"im5", "te14":"im12", "te15":"im13",
-    "te16":"im14", "te17":"im15", "te18":"im7", "te19":"im16",
-    "te20":"im17", "te21":"im18", "te22":"im19", "te23":"im20",
-    "te24":"im21"
-};
 let q_num = 0; // 何問目か
 let q_is_fnshed = false; // 問題終了フラグ
 let hiddenelement = ""; // hidden にしている input タグ
@@ -96,7 +90,7 @@ function changeIMG() {
         if (i === slcted_div) {
             const id_im = "im-p-" + String(i);
             const dec = map[display_text_id].match(/\d+/);
-            document.getElementById(id_im).src = paths[dec];
+            document.getElementById(id_im).src = `./materials/processed/karuta/im${dec}.png`;
 
             // 重複削除
             const index = arrs.indexOf(dec);
@@ -112,7 +106,7 @@ function changeIMG() {
         } else {
             const j = arrs[i];
             const id_im = "im-p-" + String(i);
-            document.getElementById(id_im).src = paths[j];
+            document.getElementById(id_im).src = `./materials/processed/karuta/im${j}.png`;
         }
     }
     next_start_time = Date.now();
@@ -134,9 +128,9 @@ function Judge(element) {
     const result = attr.match(/\d+/); // パスに含まれる数字の1文字以上の繰り返しを抽出
 
     // 判定
-    const resp = "im" + result;
+    const resp = `im${result}`;
     const answ = map[display_text_id];
-    const id_result = "result-" + String(q_num);
+    const id_result = `result-${q_num}`;
     if (resp === answ) {
         document.getElementById(id_result).innerHTML = '<img src="./materials/processed/evaluation/yatta.png">';
     } else {
@@ -147,7 +141,7 @@ function Judge(element) {
     q_is_fnshed = true; // 問題終了フラグの切り替え
     document.getElementById('next').style.visibility = 'visible'; //nextボタン表示
     if (q_num >= 4) {
-        document.getElementById('next-or-result').innerHTML = '<button id="result" onclick="DisplayResult()">RESULT</button>';
+        document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="result" onclick="DisplayResult()">リザルト</a>';
     }
 }
 
@@ -158,18 +152,18 @@ function DisplayResult() {
     const penalty_time = miss_num * 5;
     const final_time = result_time + penalty_time;
 
-    document.getElementById('clear-time').innerHTML = "クリアタイム: " + result_time.toFixed(2) + "秒";
-    document.getElementById('penalty').innerHTML = "ペナルティ: " + miss_num + "回 x 5秒";
-    document.getElementById('final-score').innerHTML = "最終スコア: " + final_time.toFixed(2) + "秒";
+    document.getElementById('clear-time').innerHTML = `クリアタイム: ${result_time.toFixed(2)}秒`;
+    document.getElementById('penalty').innerHTML = `ペナルティ: ${miss_num}回 x 5秒`;
+    document.getElementById('final-score').innerHTML = `最終スコア: ${final_time.toFixed(2)}秒`;
     
-    let shareUrl  = 'https://twitter.com/intent/tweet';
-    shareUrl += '?text=' + encodeURIComponent('Score: ' + final_time.toFixed(2) + '秒\nplayed mitio-iisou.com #mitioiisou\n');
+    let shareUrl = 'https://twitter.com/intent/tweet';
+    shareUrl += '?text=' + encodeURIComponent(`Score: ${final_time.toFixed(2)}秒\nplayed トム・ブラウンかるた\n`);
     shareUrl += '&url=' + encodeURIComponent('https://and-2353.github.io/ThomBrowne/');
 
     // シェアボタン追加
-    const shareLink = '<a href="' + shareUrl + '">twitter</a>';
-    document.getElementById('share').innerHTML = '<h1>シェア：' + shareLink + '</h1>';
-    document.getElementById('next-or-result').innerHTML = '<button id="result" onclick="reload()">はじめから</button>';
+    const shareLink = `<a href="${shareUrl}" target="_blank"><img src="path/to/twitter_icon.png" alt="Share on Twitter" width="32" height="32"></a>`;
+    document.getElementById('share').innerHTML = `<h1>シェア：${shareLink}</h1>`;
+    document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="restart" onclick="reload()">はじめから</a>';
 }
 
 function DisplayRule() {
