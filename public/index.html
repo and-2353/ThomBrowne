@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>トム・ブラウンかるた</title>
+    <link rel="icon" href="./materials/processed/icon/tori_karaage.gif">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="footer.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&family=Concert+One&family=Shippori+Antique&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- header -->
+    <header class="zigzag">
+        <h1 class="headline">
+            <a>トム・ブラウンかるた</a>
+        </h1>
+        <ul class="nav-list">
+            <li class="nav-list-item">
+                <a href="javascript:void(0)" class="btn btn-malformation" id="modal-open-rule" onclick="DisplayRule()">ルール</a>
+            </li>
+            <li class="nav-list-item">
+                <a href="javascript:void(0)" class="btn btn-malformation" id="restart" onclick="reload()">はじめから</a>
+            </li>
+        </ul>
+        <button class="hamburger-menu" onclick="toggleMenu()">
+            ☰
+        </button>
+    </header>
+    <!-- /header -->
+    
+    <!----- main ----->
+    <div class="div-top">
+        <div id="a" class="top-item">
+            <h1 class="title" id="title">
+                <span id="animated-text">ケンタッキーは…</span>
+            </h1>
+        </div>
+    </div>
+
+    <div class="div-mid">
+        <div class="modal-content" id="modal-content-result">
+            <h1 id="clear-time"></h1>
+            <h1 id="penalty"></h1>
+            <hr size="3" color="000000">
+            <h1 id="final-score"></h1>
+            <div id="share"></div>
+            <a href="javascript:void(0)" class="btn btn-malformation" id="close-result" onclick="closeModal('modal-content-result')">もどる</a>
+            <a href="javascript:void(0)" class="btn btn-malformation" id="restart-result" onclick="reload()">はじめから</a>
+        </div>
+        <div class="modal-content" id="modal-content-rule" style="display: none;">
+            <h1>正しく繋がるものを選びましょう</h1>
+            <h1>ミスが少なく解答が早いほど高いスコアが出ます</h1>
+            <a href="javascript:void(0)" class="btn btn-malformation" id="close-rule" onclick="closeModal('modal-content-rule')">もどる</a>
+            <a href="javascript:void(0)" class="btn btn-malformation" id="restart-rule" onclick="reload()">はじめから</a>
+        </div>
+
+        <div class="div-mid">
+            <div class="mid-row">
+                <div id="c" class="mid-item"><input id="im-p-0" type="image" src="./materials/processed/karuta/im0.png" alt="カルタ" onclick="Judge(this);"></div>
+                <div id="d" class="mid-item"><input id="im-p-1" type="image" src="./materials/processed/karuta/im1.png" alt="カルタ" onclick="Judge(this);"></div>
+            </div>
+            <div class="mid-row">
+                <div id="e" class="mid-item"><input id="im-p-2" type="image" src="./materials/processed/karuta/im2.png" alt="カルタ" onclick="Judge(this);"></div>
+                <div id="f" class="mid-item"><input id="im-p-3" type="image" src="./materials/processed/karuta/im3.png" alt="カルタ" onclick="Judge(this);"></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="div-bottom">
+        <span class="bottom-row">
+            <div id="h" class="bottom-left-item"><img id="image_nunokawa" src="./materials/processed/background/nunokawa1.png"></div>
+            <div id="i" class="bottom-item">
+                <table class="result-table">
+                    <tr>
+                        <td id="result-0"></td>
+                        <td id="result-1"></td>
+                        <td id="result-2"></td>
+                        <td id="result-3"></td>
+                        <td id="result-4"></td>
+                    </tr>
+                </table>
+                <div id="next-or-result">
+                    <a href="javascript:void(0)" class="btn btn-malformation" id="next" onclick="changeIMG()" style="visibility: hidden;">NEXT</a>
+                </div>
+            </div>
+            <div id="j" class="bottom-right-item"><img id="image_mitio" src="./materials/processed/background/mitio1.png"></div>
+        </span>
+    </div>
+    
+    <!----- /main ----->
+    
+    <!-- モーダル背景 -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <!-- footer -->
+    <footer class="zigzag">
+        <p>©2022 @and-2353. All rights reserved.</p>
+    </footer>
+    <!----- /footer ----->
+</body>
+</html>
