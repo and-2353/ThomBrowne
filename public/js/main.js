@@ -20,7 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('close-rule').addEventListener('click', () => closeModal('modal-content-rule'));
     document.getElementById('restart-result').addEventListener('click', reload);
     document.getElementById('close-result').addEventListener('click', () => closeModal('modal-content-result'));
-    document.getElementById('result').addEventListener('click', DisplayResult);
+
+    // リザルトボタンのイベントリスナーを設定
+    document.getElementById('next-or-result').addEventListener('click', (event) => {
+        if (event.target && event.target.id === 'result') {
+            DisplayResult();
+        }
+    });
 
     setInterval(changeBackgroundImage, 1000);
 });

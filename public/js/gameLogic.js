@@ -16,7 +16,7 @@ loadTSV('/data/texts.tsv', parsedData => {
     console.log('Map:', map); // mapオブジェクトを表示
 });
 
-console.log(texts)
+console.log(texts);
 let display_text_id = "te0"; //表示されてる text(問題文) のid
 let q_num = 0; // 何問目か
 let q_is_fnshed = false; // 問題終了フラグ
@@ -132,9 +132,10 @@ export function Judge(element) {
     q_is_fnshed = true; // 問題終了フラグの切り替え
     document.getElementById('next').style.visibility = 'visible'; //nextボタン表示
     if (q_num >= 4) {
-        document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="result" onclick="DisplayResult()">リザルト</a>';
+        document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="result">リザルト</a>';
     }
 }
+
 
 export function DisplayResult() {
     openModal('modal-content-result'); // モーダルを表示
@@ -152,7 +153,7 @@ export function DisplayResult() {
     shareUrl += '&url=' + encodeURIComponent('https://and-2353.github.io/ThomBrowne/');
 
     // シェアボタン追加
-    const shareLink = `<a href="${shareUrl}" target="_blank"><img src="path/to/twitter_icon.png" alt="Share on Twitter" width="32" height="32"></a>`;
+    const shareLink = `<a href="${shareUrl}" target="_blank"><img src="/assets/processed/icon/logo-black.png" alt="Share on X" width="32" height="32"></a>`;
     document.getElementById('share').innerHTML = `<h1>シェア：${shareLink}</h1>`;
     document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="restart" onclick="reload()">はじめから</a>';
 }
