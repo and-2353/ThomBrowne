@@ -11,10 +11,15 @@ header {
 }
 
 header .headline {
-    font-size: 30px;
-    margin-left: 20px;
+    margin-left: 0px;
     flex-grow: 1;
 }
+
+header .headline img {
+    height: 100%; /* ロゴの高さを調整する */
+    /* max-height: 100px; ヘッダーの高さに合わせる */
+}
+
 
 .nav-list {
     display: flex;
