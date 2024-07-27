@@ -103,14 +103,21 @@ table th, table td {
 }
 
 table td {
-    width: 20px;
-    height: 40px;
-    padding: 10px 10px;
+    height: 55px;
+    width: 60px;
+    padding: 0 10px;
 }
 
 .result-table img {
     width: 100%;
     height: 100%;
+}
+
+.result-table td img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover; /* 必要に応じて画像の表示方法を調整 */
 }
 
 *,
@@ -199,7 +206,6 @@ html {
     .result-table td {
         width: auto;
         height: auto;
-        padding: 20px;
     }
 
     .result-table img {
