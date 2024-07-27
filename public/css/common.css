@@ -1,0 +1,17 @@
+/* 全体の設定 */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* サイト全体のフォント指定 */
+body {
+    font-family: "Kaisei Tokumin", serif;
+    font-weight: 800 700 600 500 400;
+    background-image: url(../assets/processed/background/tatami1.png);
+    background-size: cover;
+    overflow-x: hidden;
+}
