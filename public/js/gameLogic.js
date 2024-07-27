@@ -139,22 +139,25 @@ export function Judge(element) {
 
 export function DisplayResult() {
     openModal('modal-content-result'); // モーダルを表示
-    document.getElementById('title').innerHTML = "リザルト"; // タイトル変更
+    //document.getElementById('title').innerHTML = "リザルト"; // タイトル変更
     const result_time = collapsed_time / 1000;
     const penalty_time = miss_num * 5;
     const final_time = result_time + penalty_time;
 
-    document.getElementById('clear-time').innerHTML = `クリアタイム: ${result_time.toFixed(2)}秒`;
-    document.getElementById('penalty').innerHTML = `ペナルティ: ${miss_num}回 x 5秒`;
-    document.getElementById('final-score').innerHTML = `最終スコア: ${final_time.toFixed(2)}秒`;
+    document.getElementById('clear-time').innerHTML = ` ${result_time.toFixed(2)}`;
+    document.getElementById('penalty-time').innerHTML = `${penalty_time}`;
+    document.getElementById('penalty-num').innerHTML = `${miss_num}`;
+    document.getElementById('final-score').innerHTML = `${final_time.toFixed(2)}`;
 
     let shareUrl = 'https://twitter.com/intent/tweet';
     shareUrl += '?text=' + encodeURIComponent(`Score: ${final_time.toFixed(2)}秒\nplayed トム・ブラウンかるた\n`);
     shareUrl += '&url=' + encodeURIComponent('https://and-2353.github.io/ThomBrowne/');
 
     // シェアボタン追加
-    const shareLink = `<a href="${shareUrl}" target="_blank"><img src="/assets/processed/icon/logo-black.png" alt="Share on X" width="32" height="32"></a>`;
-    document.getElementById('share').innerHTML = `<h1>シェア：${shareLink}</h1>`;
+    // const shareLink = `<a href="${shareUrl}" target="_blank"><img src="/assets/processed/icon/logo-black.png" alt="Share on X" width="32" height="32"></a>`;
+    const shareLink = `<button class="share-button">Share on X</button>`;
+    document.getElementById('share').innerHTML = `<h1>${shareLink}</h1>`;
+    
     document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="restart" onclick="reload()">はじめから</a>';
 }
 
