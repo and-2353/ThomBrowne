@@ -1,4 +1,3 @@
-// gameLogic.js
 import { openModal, closeModal } from './modal.js';
 import { loadTSV } from './loadTSV.js';
 import { typewriterEffect } from './typewriterEffect.js';
@@ -22,14 +21,30 @@ let q_num = 0; // 何問目か
 let q_is_fnshed = false; // 問題終了フラグ
 let hiddenelement = ""; // hidden にしている input タグ
 let start_time;
-let collapsed_time;
+let elapsed_time;
 let miss_num = 0;
 let total_time = 0;
 let next_start_time;
+let intervalId;
+
+function updateElapsedTime() {
+    const currentTime = Date.now();
+    elapsed_time = ((currentTime - start_time + total_time) / 1000).toFixed(2);
+    document.getElementById('elapsed-time').textContent = elapsed_time;
+}
+
+function startElapsedTime() {
+    intervalId = setInterval(updateElapsedTime, 100);
+}
+
+function stopElapsedTime() {
+    clearInterval(intervalId);
+}
 
 export function changeIMG() {
     if (q_num === 0) {
         start_time = Date.now();
+        startElapsedTime();
     } else {
         total_time += Date.now() - next_start_time;
     }
@@ -108,7 +123,8 @@ export function Judge(element) {
     }
     if (q_num === 4) {
         total_time += Date.now() - next_start_time;
-        collapsed_time = total_time;
+        elapsed_time = total_time;
+        stopElapsedTime();
     }
 
     const attr = element.getAttribute("src"); // input要素のsrc属性の値を取得
@@ -132,15 +148,13 @@ export function Judge(element) {
     q_is_fnshed = true; // 問題終了フラグの切り替え
     document.getElementById('next').style.visibility = 'visible'; //nextボタン表示
     if (q_num >= 4) {
-        document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="result">リザルト</a>';
+        document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="result" onclick="DisplayResult()">リザルト</a>';
     }
 }
 
-
 export function DisplayResult() {
     openModal('modal-content-result'); // モーダルを表示
-    //document.getElementById('title').innerHTML = "リザルト"; // タイトル変更
-    const result_time = collapsed_time / 1000;
+    const result_time = elapsed_time / 1000;
     const penalty_time = miss_num * 5;
     const final_time = result_time + penalty_time;
 
@@ -153,9 +167,7 @@ export function DisplayResult() {
     shareUrl += '?text=' + encodeURIComponent(`Score: ${final_time.toFixed(2)}秒\nplayed トム・ブラウンかるた\n`);
     shareUrl += '&url=' + encodeURIComponent('https://and-2353.github.io/ThomBrowne/');
 
-    // シェアボタン追加
-    // const shareLink = `<a href="${shareUrl}" target="_blank"><img src="/assets/processed/icon/logo-black.png" alt="Share on X" width="32" height="32"></a>`;
-    const shareLink = `<button class="share-button">Share on X</button>`;
+    const shareLink = `<a href="${shareUrl}" target="_blank" class="share-button">Share on X</a>`;
     document.getElementById('share').innerHTML = `<h1>${shareLink}</h1>`;
     
     document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="restart" onclick="reload()">はじめから</a>';
