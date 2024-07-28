@@ -29,21 +29,17 @@ function updateElapsedTime() {
     if (!q_is_fnshed) {
         elapsed_time = (Date.now() - start_time + accumulated_time) / 1000;
         document.getElementById('elapsed-time').textContent = elapsed_time.toFixed(2);
-        // console.log(`Elapsed time updated: ${elapsed_time.toFixed(2)} seconds`);
     }
 }
 
 function startOrRestartElapsedTime() {
     start_time = Date.now(); // 現在の時刻を取得
     intervalId = setInterval(updateElapsedTime, 100);
-    console.log(`Timer started/restarted at: ${start_time}`);
 }
 
 function stopElapsedTime() {
     clearInterval(intervalId);
     accumulated_time += Date.now() - start_time; // 中断までの経過時間を累積時間に追加
-    // console.log(`Timer stopped at: ${Date.now()}`);
-    // console.log(`Accumulated time: ${accumulated_time}`);
 }
 
 export function changeIMG() {
@@ -135,7 +131,6 @@ export function Judge(element) {
     if (q_num === 4) {
         total_time += Date.now() - next_start_time;
         elapsed_time = total_time;
-        console.log("bs", (accumulated_time/1000).toFixed(2));
     }
 
     const attr = element.getAttribute("src"); // input要素のsrc属性の値を取得
@@ -172,10 +167,10 @@ export function DisplayResult() {
     const penalty_time = miss_num * 5;
     const final_time = result_time + penalty_time;
 
-    document.getElementById('clear-time').innerHTML = ` ${result_time}`;
+    document.getElementById('clear-time').innerHTML = ` ${result_time.toFixed(2)}`;
     document.getElementById('penalty-time').innerHTML = `${penalty_time}`;
     document.getElementById('penalty-num').innerHTML = `${miss_num}`;
-    document.getElementById('final-score').innerHTML = `${final_time}`;
+    document.getElementById('final-score').innerHTML = `${final_time.toFixed(2)}`;
 
     let shareUrl = 'https://twitter.com/intent/tweet';
     shareUrl += '?text=' + encodeURIComponent(`Score: ${final_time.toFixed(2)}秒\nplayed トム・ブラウンかるた\n`);

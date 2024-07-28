@@ -13,6 +13,19 @@ let currentIndex = 0;
 
 export function changeBackgroundImage() {
     currentIndex = (currentIndex + 1) % images_nunokawa.length;
-    document.getElementById('image_nunokawa').src = images_nunokawa[currentIndex];
-    document.getElementById('image_mitio').src = images_mitio[currentIndex];
+
+    const nunokawaImage = document.getElementById('image_nunokawa');
+    const mitioImage = document.getElementById('image_mitio');
+
+    if (nunokawaImage) {
+        nunokawaImage.src = images_nunokawa[currentIndex];
+    } else {
+        console.error('nunokawa image element not found');
+    }
+
+    if (mitioImage) {
+        mitioImage.src = images_mitio[currentIndex];
+    } else {
+        console.error('mitio image element not found');
+    }
 }
