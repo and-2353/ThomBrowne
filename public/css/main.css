@@ -5,7 +5,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 20px; /* title と elapsed-time の間に間隔を追加 */
 }
 
 .div-top .top-item {
@@ -24,6 +23,20 @@
     padding: 10px;
     box-sizing: border-box;
     width: 100%;
+    margin-bottom: 20px; /* タイトルと経過時間の間に間隔を追加 */
+}
+
+.elapsed-time {
+    text-align: center;
+}
+
+.label {
+    font-size: 1.2rem; /* タイムのラベルを小さく */
+}
+
+.time-value {
+    font-size: 2.5rem; /* タイムの値を大きく */
+    color: red;
 }
 
 /* ミッド部分の設定 */
@@ -52,6 +65,7 @@
     max-width: calc(100% - 50px);
 }
 
+
 #animated-text {
     display: inline-block;
     overflow: hidden;
@@ -59,6 +73,7 @@
     border-right: 2px solid black;
     animation: typewriter 2s steps(30) 1s 1 normal both;
 }
+
 
 /* ボトム部分の設定 */
 .div-bottom {

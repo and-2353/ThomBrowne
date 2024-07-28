@@ -1,3 +1,4 @@
+// gameLogic.js
 import { openModal, closeModal } from './modal.js';
 import { loadTSV } from './loadTSV.js';
 import { typewriterEffect } from './typewriterEffect.js';
@@ -5,48 +6,60 @@ import { typewriterEffect } from './typewriterEffect.js';
 let texts = [];
 let map = {};
 loadTSV('/data/texts.tsv', parsedData => {
-    console.log('Loaded TSV data:', parsedData); // 読み込んだデータを表示
     texts = parsedData.map(row => row[0]);
     map = parsedData.reduce((acc, row, index) => {
         acc[`te${index}`] = `im${row[1]}`;
         return acc;
     }, {});
-    console.log('Texts:', texts); // texts配列を表示
-    console.log('Map:', map); // mapオブジェクトを表示
 });
 
-console.log(texts);
 let display_text_id = "te0"; //表示されてる text(問題文) のid
 let q_num = 0; // 何問目か
 let q_is_fnshed = false; // 問題終了フラグ
 let hiddenelement = ""; // hidden にしている input タグ
 let start_time;
-let elapsed_time;
+let elapsed_time = 0;
+let accumulated_time = 0; // 累積経過時間
 let miss_num = 0;
 let total_time = 0;
 let next_start_time;
 let intervalId;
 
 function updateElapsedTime() {
-    const currentTime = Date.now();
-    elapsed_time = ((currentTime - start_time + total_time) / 1000).toFixed(2);
-    document.getElementById('elapsed-time').textContent = elapsed_time;
+    if (!q_is_fnshed) {
+        elapsed_time = (Date.now() - start_time + accumulated_time) / 1000;
+        document.getElementById('elapsed-time').textContent = elapsed_time.toFixed(2);
+        // console.log(`Elapsed time updated: ${elapsed_time.toFixed(2)} seconds`);
+    }
 }
 
-function startElapsedTime() {
+function startOrRestartElapsedTime() {
+    start_time = Date.now(); // 現在の時刻を取得
     intervalId = setInterval(updateElapsedTime, 100);
+    console.log(`Timer started/restarted at: ${start_time}`);
 }
 
 function stopElapsedTime() {
     clearInterval(intervalId);
+    accumulated_time += Date.now() - start_time; // 中断までの経過時間を累積時間に追加
+    // console.log(`Timer stopped at: ${Date.now()}`);
+    // console.log(`Accumulated time: ${accumulated_time}`);
 }
 
 export function changeIMG() {
+
     if (q_num === 0) {
         start_time = Date.now();
-        startElapsedTime();
+        accumulated_time = 0; // 累積時間をリセット
+        startOrRestartElapsedTime();
     } else {
         total_time += Date.now() - next_start_time;
+    }
+
+    // テキストが混ざるのを防ぐためにinnerHTMLを空に設定
+    const titleElement = document.getElementById('title');
+    if (titleElement) {
+        titleElement.innerHTML = '';
     }
 
     // nextボタンを隠す, hidden にしている input タグを再表示する
@@ -69,14 +82,12 @@ export function changeIMG() {
     // テキストの書き換え
     const slcted = Math.floor(Math.random() * arrs.length);
     if (!texts[arrs[slcted]]) {
-        console.log('テキストが存在しません。');
         return;
     }
-    typewriterEffect(texts[arrs[slcted]]);
+    if (titleElement) {
+        typewriterEffect(texts[arrs[slcted]]);
+    }
     display_text_id = "te" + String(arrs[slcted]);
-
-    console.log('Display text ID:', display_text_id);
-    console.log('Map for display text ID:', map[display_text_id]);
 
     // 問題終了フラグ・問題数の切り替え
     q_is_fnshed = false;
@@ -91,10 +102,8 @@ export function changeIMG() {
             const id_im = "im-p-" + String(i);
             const dec = map[display_text_id]?.match(/\d+/);
             if (!dec) {
-                console.log('Dec value is null:', dec);
                 document.getElementById(id_im).src = `/assets/processed/karuta/imnull.png`;
             } else {
-                console.log('Dec value:', dec);
                 document.getElementById(id_im).src = `/assets/processed/karuta/im${dec}.png`;
             }
 
@@ -115,16 +124,18 @@ export function changeIMG() {
         }
     }
     next_start_time = Date.now();
+    startOrRestartElapsedTime();
 }
 
 export function Judge(element) {
     if (q_is_fnshed) {
         return;
     }
+    stopElapsedTime();
     if (q_num === 4) {
         total_time += Date.now() - next_start_time;
         elapsed_time = total_time;
-        stopElapsedTime();
+        console.log("bs", (accumulated_time/1000).toFixed(2));
     }
 
     const attr = element.getAttribute("src"); // input要素のsrc属性の値を取得
@@ -148,20 +159,23 @@ export function Judge(element) {
     q_is_fnshed = true; // 問題終了フラグの切り替え
     document.getElementById('next').style.visibility = 'visible'; //nextボタン表示
     if (q_num >= 4) {
-        document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="result" onclick="DisplayResult()">リザルト</a>';
+        document.getElementById('next-or-result').innerHTML = '<a href="javascript:void(0)" class="btn btn-malformation" id="result">リザルト</a>';
+        document.getElementById('result').onclick = DisplayResult;
     }
 }
 
 export function DisplayResult() {
     openModal('modal-content-result'); // モーダルを表示
-    const result_time = elapsed_time / 1000;
+    stopElapsedTime(); // リザルト表示でタイマーを完全停止
+
+    const result_time = parseFloat(document.getElementById('elapsed-time').textContent);
     const penalty_time = miss_num * 5;
     const final_time = result_time + penalty_time;
 
-    document.getElementById('clear-time').innerHTML = ` ${result_time.toFixed(2)}`;
+    document.getElementById('clear-time').innerHTML = ` ${result_time}`;
     document.getElementById('penalty-time').innerHTML = `${penalty_time}`;
     document.getElementById('penalty-num').innerHTML = `${miss_num}`;
-    document.getElementById('final-score').innerHTML = `${final_time.toFixed(2)}`;
+    document.getElementById('final-score').innerHTML = `${final_time}`;
 
     let shareUrl = 'https://twitter.com/intent/tweet';
     shareUrl += '?text=' + encodeURIComponent(`Score: ${final_time.toFixed(2)}秒\nplayed トム・ブラウンかるた\n`);

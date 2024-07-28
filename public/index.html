@@ -46,7 +46,8 @@
         </div>
         <div id="b" class="elapsed-time">
             <p class="elapsed-time">
-                <span class="title">経過時間:</span> <span id="elapsed-time">0.00</span>秒
+                <span class="label">タイム</span><br>
+                <span class="time-value" id="elapsed-time">0.00</span>秒
             </p>
         </div>
     </div>
@@ -66,7 +67,6 @@
                 </div>
                 <div id="share"></div>
                 <div class="modal-buttons">
-                    <a href="javascript:void(0)" class="btn btn-malformation" id="close-result">もどる</a>
                     <a href="javascript:void(0)" class="btn btn-malformation" id="restart-result">はじめから</a>
                 </div>
             </div>
@@ -131,5 +131,13 @@
         <p>©2022 @and-2353. All rights reserved.</p>
     </footer>
     <!----- /footer ----->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('next').addEventListener('click', (event) => {
+                event.stopPropagation(); // イベントの伝播を止める
+                window.changeIMG();
+            });
+        });
+    </script>
 </body>
 </html>
