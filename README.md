@@ -5,8 +5,10 @@
 - フロントエンド: HTML/CSS/JavaScript
 
 ## ホスティング
-GitHub Pagesでホスティング
-リンク：https://and-2353.github.io/ThomBrowne/
+~~GitHub Pagesでホスティング~~
+~~リンク：https://and-2353.github.io/ThomBrowne/~~
+ファイル構成変えたためアクセスできない
+https://and-2353.github.io/ThomBrowne/public/index.html で一応アクセスできるがファイル読み込みできないので、実質的に非ローカルでのホスティングは未対応
 
 ## ローカルでのテスト手順
 ### サイトの表示
