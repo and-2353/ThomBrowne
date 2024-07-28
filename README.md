@@ -1,18 +1,31 @@
-# mitio-iisou.com
+# トム・ブラウンかるた
 
-HTML+CSS/JavaScript で構成
+## 概要
+- Node.js/Express.js製のWebアプリケーション
+- フロントエンド: HTML/CSS/JavaScript
 
-Play：https://and-2353.github.io/ThomBrowne/
+## ホスティング
+GitHub Pagesでホスティング
+リンク：https://and-2353.github.io/ThomBrowne/
 
-## プレイ画面
-![プレイ画面](./scripts/play_image.png "プレイ画面")
+## ローカルでのテスト手順
+### サイトの表示
+```bash
+cd path/to/ThomBrowne
+node server.js
+```
+http://localhost:3000 で確認
 
-## 修正点
-- Twitter の組み込みの際常時設定になる ただし、リザルト時だけ表示にしたかったのでjsのinnerHTMLで組み込みにしようとしたらスタイルが失われた 常時ではない表示でちゃんとした体裁を保つ方法が分からなかったのでただのリンクになってる
-- タイム計測にnextを押す時間も入っている, 1問目終了のnextから5問目にカルタのボタンを押すまで全ての時間が対象になってる 本当は問題に答えるだけの時間にしたほうがいい
-- 上の修正時にスコアが以上に高くなる可能性があるので必要あれば修正
+### ブラウザでのデバッグ(ログの見かた)
+1. ローカルでサーバー立ち上げ
+2. http://localhost:3000 にアクセスし、ブラウザの開発者ツール（F12）を開く
+3. Consoleタブにログが表示される
 
-###スコアの算出
-$$
-w_3\log\frac{1}{2} (w_1t+w_2m)  \\ t=time(next(Q1)～button(Q5)) \\ m= number \, of \,mistake \\ w_1=\frac{1}{20} \\ w_2= \frac{1}{4} \\w_3 =100
-$$
+### ブレークポイントを使用したデバッグ
+なんかうまくいかないので保留
+<!-- 1. VSCodeでプロジェクトのルートフォルダを開く
+2. 左側のアクティビティバーから「Run and Debug」アイコン（再生ボタンのようなアイコン）をクリックする
+3. デバッグビューから「Launch Program」構成を選択し、「再生」ボタンをクリックする -->
+
+
+

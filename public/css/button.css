@@ -1,0 +1,55 @@
+/* 基本のボタンスタイル */
+.btn,
+a.btn,
+button.btn {
+    appearance: none;
+    margin: auto;
+    font-family: "Kaisei Tokumin", serif;
+    font-weight: 700;
+    background-color: green;
+    color: #FFF;
+    cursor: pointer;
+    border-radius: 0.5rem; /* 統一された角の丸み */
+    border: 0;
+    transition: all 0.3s;
+    position: relative;
+    display: inline-block;
+    user-select: none;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    padding: 0.6em 1.1em; /* デフォルトのパディング */
+}
+
+.btn:hover,
+a.btn:hover,
+button.btn:hover {
+    background-color: #FF8C00;
+}
+
+.btn {
+    font-size: 1.3em; /* デフォルトのフォントサイズ */
+}
+
+a.btn,
+button.btn {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    padding: 1rem 4rem; /* 調整されたパディング */
+    color: #212529;
+}
+
+/* 特定のスタイルを持つボタン */
+a.btn-malformation {
+    font-size: 2rem;
+    padding: 3rem 4rem;
+    color: #fff;
+    border-radius: 100% 80px / 80px 100%;
+    background-color: #228B22;
+}
+
+a.btn-malformation:hover {
+    color: #fff;
+    border-radius: 60% 80% / 100% 80%;
+}

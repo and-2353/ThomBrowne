@@ -1,0 +1,228 @@
+/* トップ部分の設定 */
+.div-top {
+    display: flex;
+    height: 162.5px; /* 1.3倍に拡大 */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.div-top .top-item {
+    width: 65%; /* 1.3倍に拡大 */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.div-top .title {
+    font-size: 4rem;
+    background-color: white;
+    border: 2px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 20px; /* タイトルと経過時間の間に間隔を追加 */
+}
+
+.elapsed-time {
+    text-align: center;
+}
+
+.label {
+    font-size: 1.2rem; /* タイムのラベルを小さく */
+}
+
+.time-value {
+    font-size: 2.5rem; /* タイムの値を大きく */
+    color: red;
+}
+
+/* ミッド部分の設定 */
+.div-mid {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    flex-wrap: nowrap;
+}
+
+.mid-row {
+    display: flex;
+    flex-direction: row; /* 横並び */
+    justify-content: center;
+    width: auto;
+}
+
+.mid-item {
+    width: auto;
+    margin: 0 20px; /* アイテム間のマージン */
+    text-align: center;
+}
+
+.mid-item input {
+    width: 90%;
+    max-width: calc(100% - 50px);
+}
+
+
+#animated-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid black;
+    animation: typewriter 2s steps(30) 1s 1 normal both;
+}
+
+
+/* ボトム部分の設定 */
+.div-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.bottom-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row; /* 横並び */
+    justify-content: center;
+}
+
+.bottom-left-item, .bottom-right-item {
+    width: 25%;
+    text-align: center;
+}
+
+.bottom-item {
+    width: 100%;
+    text-align: center;
+}
+
+.bottom-left-item img, .bottom-right-item img {
+    width: 100%;
+    height: auto;
+}
+
+table {
+    width: 100%;
+    height: 40%;
+    border-collapse: collapse;
+    border: solid 5px black;
+    background-color: white;
+}
+table th, table td {
+    border: solid 2px black;
+}
+
+table td {
+    height: 55px;
+    width: 60px;
+    padding: 0 10px;
+}
+
+.result-table img {
+    width: 100%;
+    height: 100%;
+}
+
+.result-table td img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover; /* 必要に応じて画像の表示方法を調整 */
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+/* アニメーション用のスタイル */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* メディアクエリでPCとスマートフォン対応 */
+@media (min-width: 461px) {
+    .modal-content {
+        width: 60%; /* PCでは横幅が画面の60%になるようにする */
+    }
+}
+
+@media (max-width: 460px) {
+    .div-top .top-item {
+        width: 65%;
+    }
+
+    .div-top .title {
+        font-size: 3rem;
+        padding: 10px;
+    }
+
+    .div-mid {
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .mid-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .mid-item {
+        width: 45%;
+        margin: 5px;
+    }
+
+    .mid-item input {
+        max-width: calc(100% - 10px);
+    }
+
+    .div-bottom {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bottom-left-item, .bottom-right-item, .bottom-item {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .bottom-left-item img, .bottom-right-item img {
+        width: 90%; /* サイズを大きく調整 */
+        height: auto;
+    }
+
+    .result-table {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .result-table tr {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .result-table td {
+        width: auto;
+        height: auto;
+    }
+
+    .result-table img {
+        width: 80%; /* テーブル枠にかぶらない範囲で大きく */
+        height: auto;
+    }
+}

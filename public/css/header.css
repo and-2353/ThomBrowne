@@ -1,0 +1,80 @@
+/* ヘッダーの設定 */
+header {
+    height: auto;
+    width: 100%;
+    padding: 15px 0;
+    background-color: darkgreen;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .headline {
+    margin-left: 0px;
+    flex-grow: 1;
+}
+
+header .headline img {
+    height: 100%; /* ロゴの高さを調整する */
+    /* max-height: 100px; ヘッダーの高さに合わせる */
+}
+
+
+.nav-list {
+    display: flex;
+    margin-right: 20px;
+}
+
+.nav-list-item {
+    margin: 0 10px;
+}
+
+/* ハンバーガーメニューのスタイル */
+.hamburger-menu {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+    padding: 0; /* 不要なパディングを削除 */
+}
+
+/* メディアクエリでスマートフォン対応 */
+@media (max-width: 460px) {
+    header {
+        flex-direction: row;
+        height: auto;
+        padding: 10px;
+    }
+    header h1 a {
+        font-size: 70%;
+    }
+
+    .headline {
+        margin: 0;
+        font-size: 20px;
+    }
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .nav-list-item {
+        margin: 10px 0;
+    }
+
+    .hamburger-menu {
+        display: block;
+        margin-right: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+}
+

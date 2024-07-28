@@ -1,0 +1,112 @@
+/* モーダル背景のスタイル */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 半透明の黒 */
+    z-index: 999; /* モーダルより手前に表示 */
+    display: none; /* 初期状態では非表示 */
+}
+
+/* ルールダイアログのスタイル */
+.modal-content {
+    font-family: "Shippori Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    position: fixed;
+    top: 50%; /* 縦方向の中央に表示する */
+    left: 50%; /* 横方向の中央に表示する */
+    transform: translate(-50%, -50%); /* 真ん中に配置するために調整 */
+    z-index: 1000; /* 一番手前に表示する */
+    background-color: white; /* 背景色を白に設定 */
+    padding: 20px; /* 内側の余白を追加 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加して浮き上がらせる */
+    display: none; /* 初期状態では非表示 */
+    width: 60%;
+    height: 70%;
+    border: 2px solid black;
+}
+
+/* タイトルのスタイル */
+.modal-title {
+    text-align: center;
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/* 時間とペナルティのスタイル */
+.time,
+.penalty {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.label {
+    display: inline-block;
+    width: auto; /* ラベルの幅を自動に変更 */
+    text-align: right;
+}
+
+.value {
+    font-size: 3rem;
+    color: red; /* 数字の文字色を変更 */
+    display: inline;
+    padding: 0 10px;
+}
+
+/* 最終スコアのスタイル */
+.final-score {
+    text-align: center;
+    font-size: 4rem;
+    color: black; /* テキスト全体の色を黒に設定 */
+    margin: 20px 0;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.final-score .value {
+    color: red; /* 数字の文字色を赤に設定 */
+    font-size: 5rem;
+}
+
+.modal-content p {
+    font-size: 250%;
+}
+
+/* シェアボタンのスタイル */
+.share-button {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+}
+
+.share-button:hover {
+    background-color: #333;
+}
+
+/* モーダルボタンのコンテナ */
+.modal-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 460px) {
+    .modal-content {
+        width: 80%;
+        height: 80%;
+    }
+}
